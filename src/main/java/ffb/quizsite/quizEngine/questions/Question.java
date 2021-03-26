@@ -1,5 +1,8 @@
 package ffb.quizsite.quizEngine.questions;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import java.util.List;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -55,10 +58,12 @@ public class Question {
     this.options = options;
   }
 
+  @JsonIgnore
   public int[] getAnswers() {
     return answers == null ? new int[0] : answers;
   }
 
+  @JsonProperty(access = Access.WRITE_ONLY)
   public void setAnswers(int[] answers) {
     this.answers = answers;
   }
