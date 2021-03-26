@@ -1,15 +1,27 @@
 package ffb.quizsite.quizEngine.questions;
 
 import java.util.List;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class Question {
+
+  @NotEmpty
   private String title;
+
+  @NotEmpty
   private String text;
+
+  @NotNull
+  @Size(min = 2, message = "Must provide at least 2 options")
   private List<String> options;
+
   private int[] answers;
   private int id;
 
-  public Question() {}
+  public Question() {
+  }
 
   public Question(int id, String text, String title, List<String> options, int[] answers) {
     this.id = id;
