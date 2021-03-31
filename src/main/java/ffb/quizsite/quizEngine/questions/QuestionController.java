@@ -76,6 +76,7 @@ public class QuestionController {
    */
   @DeleteMapping("/{id}")
   public ResponseEntity<String> deleteQuestionById(@PathVariable Long id) {
-    return null;
+    questionService.deleteQuestionById(id);
+    return ResponseEntity.ok("Successfully deleted");
   }
 }
