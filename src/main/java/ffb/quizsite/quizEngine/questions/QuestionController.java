@@ -1,6 +1,7 @@
 package ffb.quizsite.quizEngine.questions;
 
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/questions")
 public class QuestionController {
+
+  @Autowired
+  private QuestionService questionService;
 
   /**
    * Gets a question by ID
@@ -50,12 +54,13 @@ public class QuestionController {
   /**
    * Retrieves a Question by ID and then updates that question
    *
-   * @param id Id of the Question to retrieve
+   * @param id       Id of the Question to retrieve
    * @param question the Question with the updated information
    * @return a ResponseEntity containing the updated Question
    */
   @PutMapping(value = "/{id}", consumes = "application/json")
-  public ResponseEntity<Question> updateQuestionById(@PathVariable Long id, @RequestBody Question question) {
+  public ResponseEntity<Question> updateQuestionById(@PathVariable Long id,
+      @RequestBody Question question) {
     return null;
   }
 
