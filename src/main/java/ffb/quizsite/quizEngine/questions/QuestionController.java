@@ -26,8 +26,9 @@ public class QuestionController {
    * @return a ResponseEntity containing the Question, or throws a 404 error
    */
   @GetMapping("/{id}")
-  public ResponseEntity<Question> getQuestionById(Long id) {
-    return null;
+  public ResponseEntity<Question> getQuestionById(@PathVariable Long id) {
+    Question question = questionService.getQuestionById(id);
+    return ResponseEntity.ok(question);
   }
 
   /**
@@ -37,7 +38,7 @@ public class QuestionController {
    */
   @GetMapping("/")
   public ResponseEntity<List<Question>> getAllQuestions() {
-    return null;
+    return ResponseEntity.ok(questionService.getAllQuestions());
   }
 
   /**
