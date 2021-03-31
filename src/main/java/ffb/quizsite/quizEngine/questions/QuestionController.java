@@ -1,7 +1,9 @@
 package ffb.quizsite.quizEngine.questions;
 
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,8 +50,8 @@ public class QuestionController {
    * @return a ResponseEntity containing the newly added Question
    */
   @PostMapping(value = "/", consumes = "application/json", produces = "application/json")
-  public ResponseEntity<Question> createNewQuestion(@RequestBody Question question) {
-    return null;
+  public ResponseEntity<Question> createNewQuestion(@Valid @RequestBody Question question) {
+    return new ResponseEntity<>(questionService.createNewQuestion(question), HttpStatus.CREATED);
   }
 
   /**
@@ -62,7 +64,8 @@ public class QuestionController {
   @PutMapping(value = "/{id}", consumes = "application/json")
   public ResponseEntity<Question> updateQuestionById(@PathVariable Long id,
       @RequestBody Question question) {
-    return null;
+    Question updatedQuestion = questionService.updateQuestionById(id, question);
+    return ResponseEntity.ok(updatedQuestion);
   }
 
   /**
