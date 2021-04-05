@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/questions")
+@RequestMapping("/api")
 public class QuestionController {
 
   @Autowired
@@ -27,7 +27,7 @@ public class QuestionController {
    * @param id the ID of the question
    * @return a ResponseEntity containing the Question, or throws a 404 error
    */
-  @GetMapping("/{id}")
+  @GetMapping("/questions/{id}")
   public ResponseEntity<Question> getQuestionById(@PathVariable Long id) {
     Question question = questionService.getQuestionById(id);
     return ResponseEntity.ok(question);
@@ -38,7 +38,7 @@ public class QuestionController {
    *
    * @return a ResponseEntity containing a List of all the questions
    */
-  @GetMapping("/")
+  @GetMapping("/questions")
   public ResponseEntity<List<Question>> getAllQuestions() {
     return ResponseEntity.ok(questionService.getAllQuestions());
   }
@@ -49,7 +49,7 @@ public class QuestionController {
    * @param question the Question to be added
    * @return a ResponseEntity containing the newly added Question
    */
-  @PostMapping(value = "/", consumes = "application/json", produces = "application/json")
+  @PostMapping(value = "/questions", consumes = "application/json", produces = "application/json")
   public ResponseEntity<Question> createNewQuestion(@Valid @RequestBody Question question) {
     return new ResponseEntity<>(questionService.createNewQuestion(question), HttpStatus.CREATED);
   }
@@ -61,7 +61,7 @@ public class QuestionController {
    * @param question the Question with the updated information
    * @return a ResponseEntity containing the updated Question
    */
-  @PutMapping(value = "/{id}", consumes = "application/json")
+  @PutMapping(value = "questions/{id}", consumes = "application/json")
   public ResponseEntity<Question> updateQuestionById(@PathVariable Long id,
       @RequestBody Question question) {
     Question updatedQuestion = questionService.updateQuestionById(id, question);
@@ -74,7 +74,7 @@ public class QuestionController {
    * @param id the ID of the Question to find
    * @return a String displaying success or failure
    */
-  @DeleteMapping("/{id}")
+  @DeleteMapping("questions/{id}")
   public ResponseEntity<String> deleteQuestionById(@PathVariable Long id) {
     questionService.deleteQuestionById(id);
     return ResponseEntity.ok("Successfully deleted");
