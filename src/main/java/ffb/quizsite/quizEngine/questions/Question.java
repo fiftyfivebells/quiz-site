@@ -31,12 +31,12 @@ public class Question {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private int id;
+  private Long id;
 
   public Question() {
   }
 
-  public Question(int id, String text, String title, List<String> options, int[] answers) {
+  public Question(Long id, String text, String title, List<String> options, int[] answers) {
     this.id = id;
     this.text = text;
     this.title = title;
@@ -78,11 +78,11 @@ public class Question {
     this.answers = answers;
   }
 
-  public int getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Long id) {
     this.id = id;
   }
 }
