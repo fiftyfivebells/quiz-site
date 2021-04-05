@@ -27,7 +27,7 @@ public class QuestionController {
    * @param id the ID of the question
    * @return a ResponseEntity containing the Question, or throws a 404 error
    */
-  @GetMapping("/questions/{id}")
+  @GetMapping(path = "/questions/{id}")
   public ResponseEntity<Question> getQuestionById(@PathVariable Long id) {
     Question question = questionService.getQuestionById(id);
     return ResponseEntity.ok(question);
@@ -38,7 +38,7 @@ public class QuestionController {
    *
    * @return a ResponseEntity containing a List of all the questions
    */
-  @GetMapping("/questions")
+  @GetMapping(path = "/questions")
   public ResponseEntity<List<Question>> getAllQuestions() {
     return ResponseEntity.ok(questionService.getAllQuestions());
   }
@@ -74,7 +74,7 @@ public class QuestionController {
    * @param id the ID of the Question to find
    * @return a String displaying success or failure
    */
-  @DeleteMapping("questions/{id}")
+  @DeleteMapping(path = "questions/{id}")
   public ResponseEntity<String> deleteQuestionById(@PathVariable Long id) {
     questionService.deleteQuestionById(id);
     return ResponseEntity.ok("Successfully deleted");
